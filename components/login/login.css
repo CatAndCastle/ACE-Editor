@@ -1,0 +1,15 @@
+login-page{
+	width:60%;
+	margin:auto;
+	margin-top:5em;
+}
+input.login{
+	display:block;
+	width:100%;
+	font-size:1em;
+	padding:0.5em 0em;
+	border:0px;
+	margin:3em auto;
+	border-bottom: 2px solid #E91F64;
+	color:black;
+}

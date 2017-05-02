@@ -1,0 +1,28 @@
+
+<a href="/" class='tab home left'>
+    <img src='img/catAndCastleLogo.png'/>
+</a>
+<a href="write{{query}}" class='tab left labeled' ng-class="{active: isSetPage('write')}" ng-show='isEditing()'>
+    <img src='img/nav/script.png'/>
+    <div class='div-name'>Write</div>
+</a>
+<a href="edit{{query}}" class='tab left labeled' ng-class="{active: isSetPage('edit')}" ng-show='isEditing()'>
+    <img src='img/nav/editor.png'/>
+    <div class='div-name'>Edit</div>
+</a>
+<a href="play{{query}}" class='tab left labeled' ng-class="{active: isSetPage('play')}" ng-show='isEditing()'>
+    <img src='img/nav/play.png'/>
+    <div class='div-name'>Play</div>
+</a>
+
+<div class='left title' ng-hide='loggedin()'>Automated Creative</div>
+
+<div class='tab right' ng-show='loggedin()'>
+    <img src='img/nav/logout.png'/>
+</div>
+<div class='tab right' ng-show='loggedin()'>
+    <img src='img/nav/settings.png'/>
+</div>
+<a href="user" class='tab right' ng-class="{active: isSetPage('user')}" ng-show='loggedin()'>
+    <img src='img/nav/user.png'/>
+</div>

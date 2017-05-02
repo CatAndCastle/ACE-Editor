@@ -1,0 +1,43 @@
+projects-page{
+	width:90%;
+	max-width:1000px;
+	margin:auto;
+}
+projects-page .new{
+	display:inline-block;
+}
+.project{
+	width:23%;
+	box-sizing: border-box;
+	padding:1em;
+	margin:1em 1%;
+	box-shadow: 0px 1px 2px 1px #a2a2a2;
+	float:left;
+}
+.project .resizer{
+	position:relative;
+	padding-top:120%;
+}
+.project .content{
+	position:absolute;
+	bottom:1em;
+}
+.project .content .letter{
+	font-size:3em;
+	color:#E91F64;
+	font-weight:bold;
+}
+.project .content .name{
+	font-size:1.2em;
+}
+.project .content .count{
+	font-size:0.7em;
+	line-height:1.2em;
+}
+
+@media screen and (max-width: 700px), screen and (max-device-height: 700px) and (orientation:portrait), screen and (max-device-height: 700px) and (orientation:landscape){
+	.project{
+		width:100%;
+		margin:1em auto;
+	}
+}

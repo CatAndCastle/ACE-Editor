@@ -1,0 +1,26 @@
+<edit-page class='el'>
+    <asset ng-repeat="asset in data.body" class='el asset'>
+        
+        <div class='section'>
+            <player data="asset"></player>
+
+            <icon-button src="img/editor/deleteButton.png" class='delete' ng-click="deleteAsset($index)"></icon-button>
+        </div>
+
+        <div class='section'>
+            <div class='header'>TEXT</div>
+            <textarea rows="3" type="text" ng-model='asset.text' ng-keyup='didEdit()'>{{asset.text}}</textarea>
+        </div>
+
+        <div class='section'>
+            <div class='header'>BACKGROUND VISUAL</div>
+            <img class='thumb left' ng-src='{{asset.image || trustUrl}}' />
+            <ace-button ng-click="edit()" class='clickable edit-image left'>EDIT</ace-button>
+            <div class='clearboth'></div>
+        </div>
+
+        <div class='section'>
+            <div class='header'>DESIGN</div>
+        </div>
+    </asset>
+</edit-page>

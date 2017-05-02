@@ -1,0 +1,28 @@
+ace-button{
+    position: relative;
+    background-color: #d6d6d6;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 0px;
+    margin: 1em 0em;
+    padding: 0.5em 2em;
+    box-shadow: 0px 2px 4px #a2a2a2;
+    color:#E91F64;
+    font-weight:bold;
+
+    transition: all linear 500ms;
+    -webkit-transition: all linear 500ms;
+    -ms-transition: all linear 500ms;
+    -o-transition: all linear 500ms;
+}
+
+ace-button.active, ace-button:hover{
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+
+    transition: all linear 0ms;
+    -webkit-transition: all linear 0ms;
+    -ms-transition: all linear 0ms;
+    -o-transition: all linear 0ms;
+}

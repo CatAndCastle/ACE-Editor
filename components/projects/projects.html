@@ -1,0 +1,15 @@
+<projects-page class='el'>
+    
+    <ace-button ng-click="newProject()" class='clickable new'>New Project</ace-button>
+
+    <div>
+        <a href="project" ng-repeat="p in projects" class='el clickable project'>
+            <div class='resizer'></div>
+            <div class='content'>
+                <div class='letter'>{{p.name.substring(0, 1).toUpperCase()}}</div>
+                <div class='name'>{{p.name}}</div>
+                <div class='count'>{{p.numVid}}</div>
+            </div>
+        </a>
+    </div>
+<projects-page>

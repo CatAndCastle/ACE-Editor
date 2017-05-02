@@ -1,0 +1,8 @@
+<write-page class='el shadow-outline'>
+    <icon-button src="img/buttons/addLine.png" class='add' ng-click="addLine($index)"></icon-button>
+    <div ng-show="asset.text.length>0" ng-repeat="asset in data.body" class='asset'>
+        <div class='title'>{{asset.type=='title' ? 'Title' : ('Shot ' + $index) }} </div>
+        <textarea type="text" ng-model='asset.text' ng-keyup='didEdit()'>{{asset.text}}</textarea>
+        <icon-button src="img/buttons/deleteLine.png" class='delete' ng-click="deleteLine($index)"></icon-button>
+    </div>
+</write-page>

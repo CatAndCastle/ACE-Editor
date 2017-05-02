@@ -1,0 +1,87 @@
+edit-page{
+	width:90%;
+	max-width:1500px;
+	margin: 2em auto;
+}
+edit-page asset{
+	width:31%;
+	box-sizing: border-box;
+	padding:0em;
+	margin:1em 1%;
+	float:left;
+}
+edit-page asset icon-button.delete{
+	position:absolute;
+	width:2em;
+	height:2em;
+	top:-1em;
+	left:-1em;
+	z-index:100;
+}
+edit-page asset .section{
+	position:relative;
+	width:100%;
+	display:block;
+	min-height:50px;
+	margin:1em auto;
+}
+edit-page asset .section .header{
+	width:100%;
+	font-size:0.7em;
+	/*line-height:2em;*/
+	margin:1em auto;
+	font-weight:bold;
+	color:gray;
+}
+
+edit-page asset .section player{
+	width:100%;
+}
+
+edit-page asset textarea{
+	resize: none;
+    position: relative;
+    display: block;
+    font-size: 1em;
+    padding:0.5em 1em;
+    border: 0px;
+    width: 100%;
+    font-family: inherit;
+    color:black;
+    background-color:#e4e4e4;
+    border-radius:10px;
+}
+
+edit-page asset img.thumb{
+	width:50px;
+	height:50px;
+	box-sizing:border-box;
+	margin: 10px 10px 10px 0px;
+	object-fit:cover;
+	border-radius:5px;
+	display:inline;
+	position:relative;
+	cursor:pointer;
+}
+edit-page asset img.thumb:hover{
+	border: 2px solid #E91F64;
+}
+edit-page asset .edit-image{
+	display:inline;
+	position:relative;
+	font-size:0.8em;
+	border-radius:7px;
+}
+
+@media screen and (max-width: 1000px){
+	edit-page asset{
+		width:48%;
+	}
+}
+
+@media screen and (max-width: 700px), screen and (max-device-height: 700px) and (orientation:portrait), screen and (max-device-height: 700px) and (orientation:landscape){
+	edit-page asset{
+		width:100%;
+		margin:1em auto;
+	}
+}
