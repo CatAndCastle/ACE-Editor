@@ -1,8 +1,8 @@
-<edit-page class='el'>
+<edit-page class='el'  ng-show="dataLoaded()">
     <asset ng-repeat="asset in data.body" class='el asset'>
         
         <div class='section'>
-            <player data="asset"></player>
+            <!-- <player data="asset"></player> -->
 
             <icon-button src="img/editor/deleteButton.png" class='delete' ng-click="deleteAsset($index)"></icon-button>
         </div>
@@ -12,10 +12,10 @@
             <textarea rows="3" type="text" ng-model='asset.text' ng-keyup='didEdit()'>{{asset.text}}</textarea>
         </div>
 
-        <div class='section'>
+        <div class='section' ng-show="asset.media.length>0">
             <div class='header'>BACKGROUND VISUAL</div>
-            <img class='thumb left' ng-src='{{asset.image || trustUrl}}' />
-            <ace-button ng-click="edit()" class='clickable edit-image left'>EDIT</ace-button>
+            <img class='thumb left' ng-src='{{asset.media[0].url || trustUrl}}' />
+            <ace-button ng-click="edit($index)" class='clickable edit-image left'>EDIT</ace-button>
             <div class='clearboth'></div>
         </div>
 

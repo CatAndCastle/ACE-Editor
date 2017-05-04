@@ -1,0 +1,21 @@
+<div class='popup' id='custom-modal'>
+    <div id='media-selector'>
+
+        <div class='title'>CHOOSE BACKGROUND</div>
+
+        <div class='new'>
+            <input type='text' ng-model='newUrl' placeholder='Paste link' class='left'/>
+            <ace-button ng-click="submitUrl()" class='clickable left' ng-show="newUrl">SUBMIT</ace-button>
+        </div>
+
+        <div class='items'>
+            <div class='item el clickable' ng-repeat="asset in items" ng-click="select($index)" ng-class="{selected: isSelected($index)}" ng-show="asset.media.length>0">
+                <div class='resizer'></div>
+                <img ng-src="{{asset.media[0].url || trustUrl}}" class='poster'/>
+                <!-- <icon-button src="img/buttons/deleteButton.png" class='delete'></icon-button> -->
+            </div>
+        </div>
+
+        <icon-button src="img/buttons/deleteButton.png" class='close' ng-click="closePopup()"></icon-button>
+    </div>
+</div>

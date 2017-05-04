@@ -7,7 +7,7 @@ APP.config(function($routeProvider, $locationProvider) {
             templateUrl: 'components/login/login.html',
             controller: 'LoginController'
         }).
-        when('/user', {
+        when('/u/:clientName', {
             templateUrl: 'components/projects/projects.html',
             controller: 'ProjectsController'
         }).
@@ -23,18 +23,19 @@ APP.config(function($routeProvider, $locationProvider) {
             templateUrl: 'components/editor/edit/edit.html',
             controller: 'EditController'
         }).
-        // when('/edit/:videoId', {
-        //     templateUrl: 'components/editor/edit.html',
-        //     controller: 'EditController'
-        // }).
-        // when('/play/:videoId', {
-        //     templateUrl: 'components/editor/play.html',
-        //     controller: 'EditController'
-        // }).
-        
-        otherwise({
-            redirectTo: '/user'
-        });
+        when('/play', {
+            // template: 'wtf',
+            templateUrl: 'components/editor/play/play.html',
+            controller: 'PlayController'
+        }).
+        when('/loading', {
+            // template: 'wtf',
+            templateUrl: 'components/loader/loader.html',
+            controller: 'LoadingController'
+        });//.
+        // otherwise({
+        //     redirectTo: '/user'
+        // });
     
     $locationProvider.html5Mode(true).hashPrefix('!');;
 });

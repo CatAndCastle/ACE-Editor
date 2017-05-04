@@ -3,7 +3,7 @@
     <ace-button ng-click="newProject()" class='clickable new'>New Project</ace-button>
 
     <div>
-        <a href="project" ng-repeat="p in projects" class='el clickable project'>
+        <a ng-repeat="p in projects" href="project?id={{p.id}}" class='el clickable project'>
             <div class='resizer'></div>
             <div class='content'>
                 <div class='letter'>{{p.name.substring(0, 1).toUpperCase()}}</div>

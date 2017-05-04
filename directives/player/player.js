@@ -1,36 +1,42 @@
 APP.directive('player', function(){
 	var controller = ['$scope', function ($scope) {
 		$scope.playing = false;
+		$scope.playing = false;
 		$scope.bodymovin = null;
-		// $scope.data = {};
-
-		function play(){
-	    	if(!$scope.bodymovin){
-	    		CONFIG = {
+		$scope.config = {
 	    			'api_url' : API_BASE,
-	    			'storyData': clone($scope.data),
 	    			'platform': 'browser',
 	    			'renderer': 'svg',
 	    			'language':'en'
-	    		}
-	    		$scope.bodymovin = new VideoConstructor(CONFIG);
-	    		advance($scope.bodymovin);
-	    	}else{
-	    		advance($scope.bodymovin);
-	    	}
+	    		};
 
+		function config(){
+	    	if($scope.asset!=null){
+	    		$scope.config.assetData = clone($scope.asset);
+	    	}
+	    	else if($scope.story!=null){
+	    		$scope.config.storyData = clone($scope.story);
+	    	}
+		}
+
+		$scope.play = function(val){
+			$scope.playing = val;
+			
+			if($scope.playing){
+		    	if(!$scope.bodymovin){
+					config();
+		    		$scope.bodymovin = new VideoConstructor($scope.config);
+		    		advance($scope.bodymovin);
+		    	}else{
+		    		advance($scope.bodymovin);
+		    	}
+		    }
 	    }
 
 	    function goTo(frame){
 	    	if(!$scope.bodymovin){
-	    		CONFIG = {
-	    			'api_url' : API_BASE,
-	    			'assetData': clone($scope.data),
-	    			'platform': 'browser',
-	    			'renderer': 'svg',
-	    			'language':'en'
-	    		}
-	    		$scope.bodymovin = new VideoConstructor(CONFIG);
+	    		config();
+	    		$scope.bodymovin = new VideoConstructor($scope.config);
 	    	}
 
 	    	$scope.bodymovin.goToFrame(30);
@@ -57,25 +63,35 @@ APP.directive('player', function(){
 	    	return JSON.parse(JSON.stringify(obj));
 	    }
 
-	    goTo(0);
+	    // play();
+	    // goTo(0);
 	}],
 
-	// template = '<div class="vid-container">'+
+	controlsHTML = '<player-controls ng-show="controls" class="el">' +
+						'<img src="img/player/BlackGradient.png" class="gradient"/>'+
+						'<div class="play-pause zoom-hover">'+
+						    '<img src="img/player/playButton.png" ng-hide="playing" ng-click="play(true)" class="clickable"/>'+
+						    '<img src="img/player/pauseButton.png" ng-show="playing" ng-click="play(false)" class="clickable"/>'+
+						'</div>' + 
+					'</player-controls>';
+	
 	template =	'<div class="resizer"></div>'+
-				    '<div class="player-container">'+
-				        '<div id="bodymovin"></div>'+
-				        // '<player-controls class="el" ng-show="controls"></player-controls>'+
-				    '</div>';
-				// '</div>';
+			    '<div class="player-container">'+
+			        '<div id="bodymovin" ng-click="play()"></div>'+
+			        controlsHTML +
+			    '</div>';
 
 	return {
 		restrict: "E",
 		scope: {
-			data: '='
+			asset: '=',
+			story: '=',
+			controls: '@'
 		},
 		template: template,
 		controller: controller,
-		link: function(scope, element){
+		link: function(scope, element, attrs){
+			scope.controls = 'status' in attrs;
 			scope.thisEl = element;
 		}
 	}

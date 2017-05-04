@@ -1,14 +1,24 @@
-APP.controller('VideosController', function($scope, $window, $http, $location){
+APP.controller('VideosController', function($scope, $window, $http, $location, dataManager, ModalService){
 	var ctrl = this;
-	$scope.videos = [
-		{id: "", name:"29 Products That'll Stop You From Wanting To Kill Your Roommate", posterUrl:"img/placeholder.jpg"},
-		{id: "", name:"Video Two", posterUrl:"img/placeholder.jpg"},
-		{id: "", name:"Video Three", posterUrl:"img/placeholder.jpg"},
-		{id: "", name:"Video Four", posterUrl:"img/placeholder.jpg"},
-	];
+	// var projectId = $scope.query = ;
+	$scope.stories = [];
+	fetch();
 
 	$scope.newVideo = function(){
-		console.log("TODO: Add Project");
+		
+		ModalService.showModal({
+			templateUrl: 'components/popups/newVideo/newVideo.html',
+			controller: 'NewVideoController',
+			inputs: {
+				formFields: [{'type':'text', 'placeholder':'Paste link', 'value':'', 'name':'url'}],
+				projectId: $location.search().id
+			}
+	    }).then(function(modal) {
+			modal.close.then(function(result) {
+				console.log("closed new video form");
+				// console.log(result);
+			});
+	    });
 	}
 
 	$scope.deleteVideo = function(){
@@ -19,11 +29,11 @@ APP.controller('VideosController', function($scope, $window, $http, $location){
 	}
 
 	$scope.goBack = function(){
-		$location.path('user');
+		$window.history.back();
 	}
 
 	$scope.goTo = function(idx){
-		$location.path('write');
+		$location.path('write').search('id', $scope.stories[idx].id);
 	}
 
 	function recordChanges(){
@@ -32,7 +42,12 @@ APP.controller('VideosController', function($scope, $window, $http, $location){
 
 	//TODO: fetch videos for projectId
 	function fetch(){
-		$scope.videos = [];
+		dataManager.fetchProject($location.search().id)
+		.then(function (data) {
+			$scope.stories = data.stories;
+		}, function (data) {
+		});
+		
 	}
 	
 });

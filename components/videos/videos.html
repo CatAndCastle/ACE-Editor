@@ -1,10 +1,10 @@
 <videos-page class='el'>
     
-    <icon-button src="img/buttons/backButton.png" class='goback' ng-click="goBack()"></icon-button>
+    <icon-button src="img/buttons/BackButton.png" class='goback' ng-click="goBack()"></icon-button>
     <ace-button ng-click="newVideo()" class='clickable new'>New Video</ace-button>
 
     <div style="clear:both;">
-        <video-item ng-repeat="v in videos" class='el clickable' ng-click="goTo($index)">
+        <video-item ng-repeat="v in stories" class='el clickable' ng-click="goTo($index)">
             <div class='thumbnail'>
                 <div class='resizer'></div>
                 <img ng-src="{{v.posterUrl | trustUrl}}" class='poster'/>

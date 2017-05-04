@@ -1,0 +1,15 @@
+<div class='popup' id='custom-modal'>
+    <div id="new-video">
+
+        <div class='title'>NEW LISTICLE</div>
+
+        <div class='attribute' ng-repeat="i in formFields">
+            <input type='{{i.type}}' ng-model='i.value' placeholder='{{i.placeholder}}'/>
+        </div>
+
+        
+        <ace-button ng-click="submit()" class='clickable submit'>SUBMIT</ace-button>
+        <icon-button src="img/buttons/deleteButton.png" class='close' ng-click="close()"></icon-button>
+    </div>
+
+</div>

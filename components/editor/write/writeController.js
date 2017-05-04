@@ -1,6 +1,20 @@
-APP.controller('WriteController', function($scope, $window, $http, $rootScope, $timeout, dataManager){
+APP.controller('WriteController', function($scope, $window, $location, $timeout, dataManager){
 	var ctrl = this;
-	$scope.data = dataManager.getData();
+	$scope.data = null;
+	fetch();
+	
+	function fetch(){
+		dataManager.setStoryId($location.search().id);
+		dataManager.getData()
+			.then(function (data) {
+				$scope.data = data;
+			}, function (data) {
+			});
+	}
+
+	$scope.dataLoaded = function(){
+		return $scope.data!=null;
+	}
 
 	$scope.deleteLine = function(idx){
 		dataManager.deleteAsset(idx);

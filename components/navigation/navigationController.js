@@ -2,11 +2,20 @@ function NavigationController($scope, $window, $http, $rootScope, $location, dat
 	var ctrl = this;
 	var _path = $location.path();
 	$scope.query = $window.location.search;
+
 	
 	$scope.loggedin = function(){
-		return dataManager.loggedin;
+		return dataManager.loggedin || _path.includes('loading');
 	}
 
+	$scope.isLoading = function(){
+		return _path.includes('loading');
+	}
+
+	$scope.title = function(){
+		return dataManager.title()
+	}
+	
 	$scope.isSetPage = function(page){
 		return _path.includes(page);
 	}
@@ -23,6 +32,12 @@ function NavigationController($scope, $window, $http, $rootScope, $location, dat
 		$scope.query = $window.location.search;
 	});
 
+	$scope.urlQuery = function(){
+		return $window.location.search;
+	}
+	$scope.clientHome = function(){
+		return dataManager.clientHome();
+	}
 	ctrl.$onInit = function(){
 		console.log($rootScope.userToken);
 

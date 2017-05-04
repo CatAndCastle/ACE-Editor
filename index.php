@@ -13,7 +13,7 @@
 ?>
 <html>
 <head>
-	<title>Dashboard</title>
+	<title>Editor</title>
 	<meta name="description" content="Automated Videos Dashboard">
 	<meta charset="utf-8">
     <base href="/">
@@ -31,7 +31,6 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="services/dataManager.js"></script>
 	<script type="text/javascript" src="services/appManager.js"></script>
-
 	<script type="text/javascript" src="components/navigation/navigationController.js"></script>
 
 	<script type="text/javascript" src="components/editor/write/writeController.js"></script>
@@ -39,6 +38,12 @@
 
 	<script type="text/javascript" src="components/editor/edit/editController.js"></script>
 	<link type='text/css' rel='stylesheet' href='components/editor/edit/edit.css' >
+
+	<script type="text/javascript" src="components/editor/play/playController.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/editor/play/play.css' >
+
+	<script type="text/javascript" src="components/editor/mediaSelect/mediaSelectController.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/editor/mediaSelect/mediaSelect.css' >
 	
 
 	<script type="text/javascript" src="components/login/loginController.js"></script>
@@ -47,6 +52,12 @@
 	<link type='text/css' rel='stylesheet' href='components/projects/projects.css' >
 	<script type="text/javascript" src="components/videos/videosController.js"></script>
 	<link type='text/css' rel='stylesheet' href='components/videos/videos.css' >
+
+	<script type="text/javascript" src="components/loader/loadingController.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/loader/loader.css' >
+
+	<script type="text/javascript" src="components/popups/newVideo/newVideoController.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/popups/newVideo/newVideo.css' >
 	
 	<script type="text/javascript" src="js/components.js"></script>
 
@@ -56,6 +67,7 @@
 	<script type="text/javascript" src="directives/iconButton/iconButton.js"></script>
 	<script type="text/javascript" src="directives/player/player.js"></script>
 	<link type='text/css' rel='stylesheet' href='directives/player/player.css' >
+	<link type='text/css' rel='stylesheet' href='directives/player/playerControls.css' >
 
 
 	<!-- Player JS -->
@@ -70,26 +82,11 @@
 	
 
 	<script>
-        API_BASE 	= "<?php echo $protocol . $http_host;?>/api/v0.2/";
-        // API_BASE 	= "http://www.zeroslant.com/api/v0.2/";
-        HOST 		= "<?php echo $protocol . $http_host;?>/";
+		API_BASE = "http://ace.api.local/";
     </script>
-
-	
 
 </head>
 <body> 
-
-	<div id="fb-root"></div>
-	<script>
-		(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=869865473112380";
-		fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	</script>
 
 	<div ng-app="video-dashboard">
 		<navigation-bar></navigation-bar>

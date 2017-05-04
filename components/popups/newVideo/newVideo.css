@@ -1,0 +1,57 @@
+.popup #new-video{
+	width:80%;
+	max-height:200px;
+	position:absolute;
+	margin:auto;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	background-color:#e4e4e4;
+}
+
+#new-video .title{
+	position:relative;
+	background-color:white;
+	color:#E91F64;
+	text-align:center;
+	font-size:1.2em;
+	font-weight:bold;
+	padding:0.5em 0em;
+}
+
+#new-video .attribute{
+	position:relative;
+	width:100%;
+	box-sizing: border-box;
+
+}
+#new-video .attribute input{
+	display:block;
+	background-color:white;
+	width:80%;
+	font-size:1em;
+	padding:0.5em;
+	border:0px;
+	margin:2em auto;
+	border-radius: 5px;
+	color:black;
+}
+#new-video ace-button{
+	margin: auto;
+    display: block;
+    clear: both;
+    width: 100px;
+    text-align: center;
+}
+#new-video icon-button.close{
+	position:absolute;
+	height:2.5em;
+	width:2.5em;
+	margin:0;
+	display:inline-block;
+
+	position:absolute;
+	top:-1.25em;
+	left:-1.25em;
+}
