@@ -121,6 +121,7 @@ APP.service('dataManager', function ($http, $q, $location){
 
 
 	this.newStory = function(projectId, params){
+		_title = "";
 		$location.path('loading');//.search('id', id);
 
 		var postdata = $.param({ projectId: projectId, params: params });
