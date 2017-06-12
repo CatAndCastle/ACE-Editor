@@ -14,7 +14,7 @@ APP.directive('player', function(){
 
 	   	// }
 	   	$scope.getId = function(){
-	    	return $scope.asset.shotId;
+	    	return $scope.asset ? $scope.asset.shotId : $scope.story.id;
 	    }
 		function config(){
 			$scope.config.selector = $scope.getId();
