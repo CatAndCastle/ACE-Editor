@@ -13,8 +13,12 @@ APP.directive('player', function(){
 	   	// function oninit(){
 
 	   	// }
-
+	   	$scope.getId = function(){
+	    	return $scope.asset.shotId;
+	    }
 		function config(){
+			$scope.config.selector = $scope.getId();
+
 	    	if($scope.asset!=null){
 	    		$scope.config.assetData = clone($scope.asset);
 	    	}
@@ -82,7 +86,7 @@ APP.directive('player', function(){
 	
 	template =	'<div class="resizer"></div>'+
 			    '<div class="player-container">'+
-			        '<div id="bodymovin" ng-click="play()"></div>'+
+			        '<div id="{{getId()}}" class="bodymovin" ng-click="play()"></div>'+
 			        controlsHTML +
 			    '</div>';
 
@@ -98,6 +102,7 @@ APP.directive('player', function(){
 		link: function(scope, element, attrs){
 			scope.controls = 'status' in attrs;
 			scope.thisEl = element;
+
 		}
 	}
 });
