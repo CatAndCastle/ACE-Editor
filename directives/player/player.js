@@ -9,6 +9,10 @@ APP.directive('player', function(){
 	    			'renderer': 'svg',
 	    			'language':'en'
 	    		};
+	   	// console.log($el);
+	   	// function oninit(){
+
+	   	// }
 
 		function config(){
 	    	if($scope.asset!=null){
@@ -16,6 +20,7 @@ APP.directive('player', function(){
 	    	}
 	    	else if($scope.story!=null){
 	    		$scope.config.storyData = clone($scope.story);
+	    		$scope.config.projectId = $scope.story.projectId;
 	    	}
 		}
 
