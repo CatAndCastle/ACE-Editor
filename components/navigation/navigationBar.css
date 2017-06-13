@@ -24,7 +24,7 @@ navigation-bar{
 	background-color: #d6d5d5;
 }
 .tab.home{
-	background-color: #E91F64;
+	background-color: #1b98d4;
 	height:100%;
 	top:0%;
 	margin:0px;
@@ -54,7 +54,7 @@ navigation-bar .title{
 }
 
 .tab.home img{
-	width: 80%;
+	width: 100%;
 }
 
 navigation-bar .tab .tab-name {

@@ -1,5 +1,5 @@
 APP.directive('player', function(){
-	var controller = ['$scope', function ($scope) {
+	var controller = ['$scope', function ($scope, dataManager) {
 		$scope.playing = false;
 		$scope.playing = false;
 		$scope.bodymovin = null;
@@ -15,8 +15,26 @@ APP.directive('player', function(){
 	   	// }
 
 	   	$scope.getId = function(){
-	    	return $scope.asset ? $scope.asset.shotId : $scope.story.id;
+	   		if($scope.asset){
+	   			return $scope.asset.shotId;
+	   		}
+	   		else if($scope.story){
+	   			return $scope.story.id;
+	   		}
+	    	
+	    	return makeid(5);
 	    }
+
+	    function makeid(len)
+		{
+		    var text = "";
+		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		    for( var i=0; i < len; i++ )
+		        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		    return text;
+		}
+
 		function config(){
 			$scope.config.selector = $scope.getId();
 
@@ -25,11 +43,23 @@ APP.directive('player', function(){
 	    		$scope.config.projectId = $scope.projectid;
 	    	}
 	    	else if($scope.story!=null){
+	    		
 	    		$scope.config.storyData = clone($scope.story);
+
 	    		$scope.config.projectId = $scope.story.projectId;
 	    	}
 		}
 
+		// function configStoryData(){
+		// 	var storyData = clone($scope.story);
+		// 	for(var i=0;i<storyData.body.size;i++){
+		// 		dataManager.getBlock(storyData.body[i].blockId)
+		// 			.then(function(data){
+		// 				storyData.body[i].animationData = data;
+		// 			});
+		// 	}
+		// 	return storyData;
+		// }
 		$scope.play = function(val){
 			$scope.playing = val;
 			

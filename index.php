@@ -83,8 +83,8 @@
 	
 
 	<script>
-		API_BASE = "http://aceapi.catandcastle.com/";
-		// API_BASE = "http://ace.api.local/";
+		// API_BASE = "http://aceapi.catandcastle.com/";
+		API_BASE = "http://ace.api.local/";
     </script>
 
 </head>

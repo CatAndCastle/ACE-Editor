@@ -1,5 +1,15 @@
 play-page player{
 	width:60%;
 	margin:30px auto;
-
+}
+play-page .buttons{
+	width:60%;
+	margin:30px auto;
+	height:40px;
+}
+play-page .buttons img{
+	float:right;
+	height:100%;
+	width:auto;
+	margin-left:15px
 }
