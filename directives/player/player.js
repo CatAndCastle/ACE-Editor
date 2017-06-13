@@ -6,7 +6,7 @@ APP.directive('player', function(){
 		$scope.config = {
 	    			'api_url' : API_BASE,
 	    			'platform': 'browser',
-	    			'renderer': 'svg',
+	    			'renderer': 'canvas',// 'svg',
 	    			'language':'en'
 	    		};
 	   	// console.log($el);
