@@ -57,6 +57,10 @@ APP.service('dataManager', function ($http, $q, $location){
 		
 	}
 
+	this.preloadBlocks = function (){
+		// start preloading blocks for player preview!
+	}
+
 	this.getBody = function(){
 		this.getData();
 		return _data.body;

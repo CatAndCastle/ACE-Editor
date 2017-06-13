@@ -23,7 +23,7 @@ APP.controller('VideosController', function($scope, $window, $http, $location, d
 
 	$scope.deleteVideo = function(){
 		if ( window.confirm("delete video?") ) {
-            console.log("TODO: delete asset");
+            console.log("TODO: delete video");
             // recordChanges();
         }
 	}
@@ -50,7 +50,10 @@ APP.controller('VideosController', function($scope, $window, $http, $location, d
 		
 	}
 
-	function deleteStory(idx){
+	$scope.deleteStory = function(idx, e){
+		// e.preventDefault();
+		e.stopPropagation();
+
 		var id = $scope.stories[idx].id;
 		$scope.stories.splice(idx,1);
 

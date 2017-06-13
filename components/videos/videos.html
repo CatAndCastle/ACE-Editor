@@ -8,7 +8,7 @@
             <div class='thumbnail'>
                 <div class='resizer'></div>
                 <img ng-src="{{v.posterUrl | trustUrl}}" class='poster'/>
-                <icon-button src="img/buttons/deleteButton.png" class='delete' ng-click="deleteStory($index)"></icon-button>
+                <icon-button src="img/buttons/deleteButton.png" class='delete' ng-click="deleteStory($index, $event)"></icon-button>
             </div>
             
             <div class='title'>{{v.name}}</div>

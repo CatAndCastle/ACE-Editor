@@ -13,6 +13,7 @@ APP.directive('player', function(){
 	   	// function oninit(){
 
 	   	// }
+
 	   	$scope.getId = function(){
 	    	return $scope.asset ? $scope.asset.shotId : $scope.story.id;
 	    }
@@ -43,13 +44,17 @@ APP.directive('player', function(){
 		    }
 	    }
 
+	    $scope.showThumbnail = function(){
+	    	goTo(30);
+	    }
+
 	    function goTo(frame){
 	    	if(!$scope.bodymovin){
 	    		config();
 	    		$scope.bodymovin = new VideoConstructor($scope.config);
 	    	}
 
-	    	$scope.bodymovin.goToFrame(30);
+	    	$scope.bodymovin.goToFrame(frame);
 	    }
 
 	    function advance(constructor){
@@ -78,7 +83,7 @@ APP.directive('player', function(){
 	    }
 
 	    // play();
-	    // goTo(0);
+	    // goTo(30);
 	}],
 
 	controlsHTML = '<player-controls ng-show="controls" class="el">' +
@@ -109,6 +114,20 @@ APP.directive('player', function(){
 			scope.controls = 'status' in attrs;
 			scope.thisEl = element;
 
+			// var watch = scope.$watch(function() {
+   //              return element.children().length;
+   //          }, function() {
+   //              // Wait for templates to render
+   //              scope.$evalAsync(function() {
+   //                  // Finally, directives are evaluated
+   //                  // and templates are renderer here
+   //                  var children = element.children();
+   //                  console.log(children);
+   //                  setTimeout(function(){
+   //                 		scope.showThumbnail();
+   //                 	},10);
+   //              });
+   //          });
 		}
 	}
 });

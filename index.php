@@ -79,6 +79,7 @@
 
 	<link href='font/Roboto/Roboto.css' rel='stylesheet' type='text/css'>
 	<link href='font/AvenirNext/AvenirNext.css' rel='stylesheet' type='text/css'>
+	<link href='font/Dosis/Dosis.css' rel='stylesheet' type='text/css'>
 	
 
 	<script>
