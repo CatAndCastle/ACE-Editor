@@ -49,5 +49,15 @@ APP.controller('VideosController', function($scope, $window, $http, $location, d
 		});
 		
 	}
+
+	function deleteStory(idx){
+		var id = $scope.stories[idx].id;
+		$scope.stories.splice(idx,1);
+
+		dataManager.deleteStory(id)
+		.then(function () {
+		}, function (data) {
+		});
+	}
 	
 });

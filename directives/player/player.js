@@ -21,6 +21,7 @@ APP.directive('player', function(){
 
 	    	if($scope.asset!=null){
 	    		$scope.config.assetData = clone($scope.asset);
+	    		$scope.config.projectId = $scope.projectid;
 	    	}
 	    	else if($scope.story!=null){
 	    		$scope.config.storyData = clone($scope.story);
@@ -63,7 +64,11 @@ APP.directive('player', function(){
 	        }else{
 	        	// reset player
 	        	$scope.$broadcast('didEnd', true);
-				$scope.bodymovin.setData(clone($scope.story));
+	        	if($scope.story!=null){
+					$scope.bodymovin.setData(clone($scope.story));
+				}else if($scope.asset!=null){
+					$scope.bodymovin.setData(clone($scope.asset));
+				}
 				$scope.bodymovin.reset();
 	        }
 	    }
@@ -95,6 +100,7 @@ APP.directive('player', function(){
 		scope: {
 			asset: '=',
 			story: '=',
+			projectid: '@',
 			controls: '@'
 		},
 		template: template,

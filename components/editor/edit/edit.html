@@ -2,7 +2,7 @@
     <asset ng-repeat="asset in data.body" class='el asset'>
         
         <div class='section'>
-            <player asset="asset" controls="true"></player>
+            <player asset="asset" controls="true" projectId="{{data.projectId}}"></player>
 
             <icon-button src="img/editor/deleteButton.png" class='delete' ng-click="deleteAsset($index)"></icon-button>
         </div>

@@ -119,6 +119,29 @@ APP.service('dataManager', function ($http, $q, $location){
 		return deferred.promise;
 	}
 
+	this.deleteStory = function(storyId){
+		var postdata = $.param({ id: storyId });
+        var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+
+        $http.post(API_BASE+"story/delete", postdata, config)
+            .success(function (data, status, headers, config) {
+            	console.log(data);
+            	$location.path('write').search('id', data.storyId);
+            })
+            .error(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+                $window.alert('We are experiencing errors. Please try again later.');
+            });
+
+	}
+
 
 	this.newStory = function(projectId, params){
 		_title = "";
