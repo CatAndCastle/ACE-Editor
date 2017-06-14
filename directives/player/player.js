@@ -91,12 +91,22 @@ APP.directive('player', function(){
 	    	if(!$scope.playing){
 	    		return;
 	    	}
-	        var keepgoing = constructor.goToNextFrame();
-	        if(keepgoing){
-	            setTimeout(function(){
-	                advance(constructor);
-	            },50);
-	        }else{
+
+	    	
+	        var keepgoing = $scope.bodymovin.goToNextFrame();
+			if(keepgoing){
+	            window.requestAnimationFrame(advance);
+	        } else{
+
+
+
+	        // var keepgoing = constructor.goToNextFrame();
+	        // if(keepgoing){
+	        //     setTimeout(function(){
+	        //         advance(constructor);
+	        //     },50);
+	        // }else{
+
 	        	// reset player
 	        	$scope.$broadcast('didEnd', true);
 	        	if($scope.story!=null){
