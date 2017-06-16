@@ -1,8 +1,19 @@
 <play-page class='el'>
-    <player story="data" controls="true"></player>
+    
+    <player story="data" controls="true" ng-hide="showVideo()"></player>
+
+    <video ng-show="showVideo()" controls="" ng-src="{{videoUrl | trustUrl}}"></video>
+
+
     <div class='buttons'>
-      <img class='clickable' src='img/player/downloadButton.png'/>
-      <img class='clickable' src='img/player/twitterButton.png'/>
-      <img class='clickable' src='img/player/facebookButton.png'/>
+      <ace-button ng-click="renderMP4()" class='clickable left render'>{{buttonText}}</ace-button>
+
+      <select ng-show="audio" ng-model="selectedTrack" value="select Music" ng-options="track as track.name for track in audio track by track.audioId"></select>
+
+      <div class='right'>
+        <img class='clickable' src='img/player/downloadButton.png'/>
+        <img class='clickable' src='img/player/twitterButton.png'/>
+        <img class='clickable' src='img/player/facebookButton.png'/>
+      </div>
     </div>
 </play-page>

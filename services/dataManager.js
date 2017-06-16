@@ -10,6 +10,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 	var _clientHome = "";
 
 	this.loggedin = true;
+	this.project = null;
 	
 	this.login = function(){
 		this.loggedin = true;
@@ -192,14 +193,22 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 		var deferred = $q.defer();
 
-		$http.get(API_BASE+"project?id="+projectId)
-        .then(function(response){ 
-        	_title = response.data.name.toUpperCase();
-        	deferred.resolve(response.data);
-        })
-        .catch(function(e){
-        	console.log("error fetching project" + projectId);
-		});
+		if(this.project){
+			deferred.resolve(this.project);
+		}
+		else{
+
+			$http.get(API_BASE+"project?id="+projectId+"&fields=audio")
+	        .then(function(response){ 
+	        	_title = response.data.name.toUpperCase();
+	        	this.project = response.data;
+	        	deferred.resolve(response.data);
+	        })
+	        .catch(function(e){
+	        	console.log("error fetching project" + projectId);
+			});
+	    }
+
 
 		return deferred.promise;
 	}
@@ -252,6 +261,46 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
                 $window.alert('We are experiencing errors. Please try again later.');
             });
 
+	}
+
+	this.renderMP4 = function (){
+		var postdata = $.param({ id: _data.id });
+        var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+
+        $http.post(API_BASE+"story/render", postdata, config)
+            .success(function (data, status, headers, config) {
+            	console.log("rendering started");
+            	console.log(data);
+            })
+            .error(function (data, status, header, config) {
+                $scope.ResponseDetails = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+                $window.alert('We are experiencing errors. Please try again later.');
+            });
+
+	}
+
+	this.checkRenderStatus = function (){
+		var deferred = $q.defer();
+
+        $http.get(API_BASE+"story/render/status?id=" + _data.id)
+            .success(function (data, status, headers, config) {
+            	console.log("RENDER STATUS:");
+            	console.log(data);
+            	deferred.resolve(data);
+            })
+            .error(function (data, status, header, config) {
+                console.log("ERROR in check render status");
+                // $window.alert('We are experiencing errors. Please try again later.');
+            });
+
+        return deferred.promise;
 	}
 
 

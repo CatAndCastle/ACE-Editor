@@ -13,3 +13,18 @@ play-page .buttons img{
 	width:auto;
 	margin-left:15px
 }
+play-page .buttons .render{
+	position:absolute;
+	margin:0px;
+}
+play-page .buttons select{
+	position:relative;
+	display:block;
+	margin:auto;
+}
+play-page video{
+	width:60%;
+	height:auto;
+	margin:30px auto;
+	display:block;
+}
