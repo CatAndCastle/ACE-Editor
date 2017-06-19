@@ -16,6 +16,10 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 		return $scope.videoUrl != null && $scope.showMp4;
 	}
 
+	$scope.download = function(){
+		$scope.videoUrl && downloadURI($scope.videoUrl);
+	}
+
 	$scope.$watch('data', function() {
 		if($scope.data){
 	        dataManager.fetchProject($scope.data.projectId)
@@ -28,6 +32,17 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 				});
 		}
     });
+
+    function downloadURI(uri) {
+	  var link = document.createElement("a");
+	  // link.download = name;
+	  link.href = uri;
+	  link.download = $scope.data.name;
+	  document.body.appendChild(link);
+	  link.click();
+	  document.body.removeChild(link);
+	  delete link;
+	}
 	
 	function fetchStory(){
 		dataManager.setStoryId($location.search().id);
@@ -40,11 +55,6 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 
 		
 	}
-
-	// $scope.dataLoaded = function(){
-	// 	// return true;
-	// 	return $scope.data!=null;
-	// }
 
 	$scope.renderMP4 = function (){
 		if($scope.shouldToggleViews){
