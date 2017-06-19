@@ -264,6 +264,8 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 	}
 
 	this.renderMP4 = function (){
+		var deferred = $q.defer();
+
 		var postdata = $.param({ id: _data.id });
         var config = {
             headers : {
@@ -275,6 +277,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
             .success(function (data, status, headers, config) {
             	console.log("rendering started");
             	console.log(data);
+            	deferred.resolve(data);
             })
             .error(function (data, status, header, config) {
                 $scope.ResponseDetails = "Data: " + data +
@@ -282,7 +285,11 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
                 $window.alert('We are experiencing errors. Please try again later.');
+                deferred.resolve(data);
             });
+
+
+        return deferred.promise;
 
 	}
 
