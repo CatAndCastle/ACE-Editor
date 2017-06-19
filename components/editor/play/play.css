@@ -14,7 +14,9 @@ play-page .buttons img{
 	margin-left:15px
 }
 play-page .buttons .render{
-	position:absolute;
+	position:relative;
+	float:left;
+	/*width: 50%;*/
 	margin:0px;
 }
 play-page .buttons select{
@@ -27,4 +29,10 @@ play-page video{
 	height:auto;
 	margin:30px auto;
 	display:block;
+}
+play-page .buttons .section{
+	position:realtive;
+	float:left;
+	width:33%;
+	text-align:center;
 }

@@ -263,10 +263,11 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 	}
 
-	this.renderMP4 = function (){
+	this.renderMP4 = function (options){
 		var deferred = $q.defer();
 
-		var postdata = $.param({ id: _data.id });
+		options.id = _data.id;
+		var postdata = $.param( options );
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'

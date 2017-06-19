@@ -6,16 +6,20 @@
 
 
     <div class='buttons'>
-      <ace-button ng-click="renderMP4()" class='clickable left render'>{{buttonText}}</ace-button>
+      <div class='section'>
+        <ace-button ng-click="renderMP4()" class='clickable left render'>{{buttonText}}</ace-button>
+      </div>
 
-      <!-- <select ng-show="audio" ng-model="selectedTrack" value="select Music" ng-change="selectMusic(track.name)" ng-options="t as track.name for track in audio track by track.audioId"></select> -->
+      <div class='section'>
+        <span>select track</span>
+        <select ng-model="selectedTrack" 
+          ng-options="i.name for i in audio">
+            <option>select audio</option>
+        </select>
 
-      <select  ng-model="selectedTrack" ng-change="selectMusic(selectedTrack)">
-        <option ng-repeat="track in audio" ng-selected="selectedTrack == track.name" value="{{item.Id}}" >{{track.name}}</option>
-      </select>
+      </div>
 
-
-      <div class='right'>
+      <div class='section'>
         <img class='clickable' ng-click='download()' src='img/player/downloadButton.png'/>
         <img class='clickable' src='img/player/twitterButton.png'/>
         <img class='clickable' src='img/player/facebookButton.png'/>

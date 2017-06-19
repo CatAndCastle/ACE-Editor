@@ -26,7 +26,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 				.then(function (data){
 					$scope.project = data;
 					$scope.audio = data.audio;
-					$scope.selectedTrack = $scope.project.audio[0].name;
+					$scope.selectedTrack = $scope.project.audio[0];
 
 					checkRenderStatus();
 				});
@@ -57,13 +57,16 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	}
 
 	$scope.renderMP4 = function (){
+		// console.log($scope.selectedTrack.id);
+
 		if($scope.shouldToggleViews){
 			toggle();
 		}
 		else{
+
 			if(!$scope.rendering){
 				$scope.rendering = true;
-				dataManager.renderMP4()
+				dataManager.renderMP4({'audioId':$scope.selectedTrack.id})
 					.then(function(res){
 						$scope.buttonText = "0%";
 						checkRenderStatus();
@@ -103,8 +106,8 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	}
 
 	$scope.selectMusic = function(t) {
-		console.log('track:');
-		console.log(t);
+		// console.log('track:');
+		// console.log(t);
 	   // $scope.item.size.code = $scope.selectedItem.code
 	   // use $scope.selectedItem.code and $scope.selectedItem.name here
 	   // for other stuff ...
