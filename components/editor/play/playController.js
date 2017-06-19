@@ -22,7 +22,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 				.then(function (data){
 					$scope.project = data;
 					$scope.audio = data.audio;
-					$scope.selectedTrack = $scope.project.audio[0];
+					$scope.selectedTrack = $scope.project.audio[0].name;
 
 					checkRenderStatus();
 				});
@@ -77,7 +77,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 			.then(function (data){
 				if(data.status == 1){
 					$scope.buttonText = Math.round(data.progress * 100) + "%";
-					$timeout(checkRenderStatus, 10000);
+					$timeout(checkRenderStatus, 30000);
 				}
 				else if(data.status == 2){
 					$scope.rendering = false;
@@ -86,6 +86,14 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 					$scope.videoUrl = data.videoUrl;
 				}
 			});
-}
+	}
+
+	$scope.selectMusic = function(t) {
+		console.log('track:');
+		console.log(t);
+	   // $scope.item.size.code = $scope.selectedItem.code
+	   // use $scope.selectedItem.code and $scope.selectedItem.name here
+	   // for other stuff ...
+	}
 	
 });

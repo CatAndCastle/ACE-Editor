@@ -291,8 +291,8 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
         $http.get(API_BASE+"story/render/status?id=" + _data.id)
             .success(function (data, status, headers, config) {
-            	console.log("RENDER STATUS:");
-            	console.log(data);
+            	// console.log("RENDER STATUS:");
+            	// console.log(data);
             	deferred.resolve(data);
             })
             .error(function (data, status, header, config) {
