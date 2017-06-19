@@ -6,7 +6,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	$scope.videoUrl = null;//'https://s3.amazonaws.com/ace.video.com/4hz9DMpyBawUFLF7EDX8/Awesome_T-Shirts_That_Scream_GirlPower.mp4';//null;
 	$scope.buttonText = "Make Mp4";
 	
-	$scope.rendering = false;
+	$scope.rendering = true;
 	$scope.shouldToggleViews = false;
 	$scope.showMp4 = true;
 
@@ -77,14 +77,17 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 		dataManager.checkRenderStatus()
 			.then(function (data){
 				if(data.status == 1){
+					$scope.rendering = true;
 					$scope.buttonText = Math.round(data.progress * 100) + "%";
-					$timeout(checkRenderStatus, 30000);
+					$timeout(checkRenderStatus, 15000);
 				}
 				else if(data.status == 2){
 					$scope.rendering = false;
 					$scope.shouldToggleViews = true;
 					$scope.buttonText = "See Canvas";
 					$scope.videoUrl = data.videoUrl;
+				}else{
+					$scope.rendering = false;
 				}
 			});
 	}
