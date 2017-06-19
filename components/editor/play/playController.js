@@ -55,6 +55,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 				$scope.rendering = true;
 				dataManager.renderMP4()
 					.then(function(res){
+						$scope.buttonText = "0%";
 						checkRenderStatus();
 					});
 				
