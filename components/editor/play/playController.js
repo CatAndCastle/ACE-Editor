@@ -57,7 +57,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	}
 
 	$scope.renderMP4 = function (){
-		// console.log($scope.selectedTrack.id);
+		// console.log($scope.selectedTrack);
 
 		if($scope.shouldToggleViews){
 			toggle();
@@ -80,7 +80,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	function toggle(){
 		$scope.showMp4 = !$scope.showMp4;
 		if($scope.showMp4){
-			$scope.buttonText = "See Canvas";
+			$scope.buttonText = "See Preview";
 		}else{
 			$scope.buttonText = "See Mp4";
 		}
@@ -97,7 +97,7 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 				else if(data.status == 2){
 					$scope.rendering = false;
 					$scope.shouldToggleViews = true;
-					$scope.buttonText = "See Canvas";
+					$scope.buttonText = "See Preview";
 					$scope.videoUrl = data.videoUrl;
 				}else{
 					$scope.rendering = false;
