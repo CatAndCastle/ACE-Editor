@@ -28,7 +28,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 	    this.autosaveTimeout = setTimeout(function(){
 	      self.updateStory();
 	      // self.autosaveTimeout = null;
-	    }, 1000);
+	    }, 700);
 	}
 
 	this.setStoryId = function(id){
