@@ -21,7 +21,11 @@ APP.controller('WriteController', function($scope, $window, $location, $timeout,
 	}
 
 	$scope.addLine = function(idx){
-		dataManager.assAsset();
+		dataManager.addAsset();
+	}
+
+	$scope.didEdit = function(){
+		dataManager.handleEdit();
 	}
 
 	var init = function () {

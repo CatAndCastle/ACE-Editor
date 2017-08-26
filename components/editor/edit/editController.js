@@ -24,6 +24,10 @@ APP.controller('EditController', function($scope, $window, $location, $timeout, 
 		dataManager.addAsset();
 	}
 	
+	$scope.didEdit = function(){
+		dataManager.handleEdit();
+	}
+	
 	$scope.edit = function(idx){
 		ModalService.showModal({
 			templateUrl: 'components/editor/mediaSelect/mediaSelect.html',
@@ -42,6 +46,7 @@ APP.controller('EditController', function($scope, $window, $location, $timeout, 
 			console.log(result);
 			// update data
 			$scope.data.body[result.itemIdx].media[0].url = result.mediaUrl;
+			dataManager.handleEdit();
 	      });
 	    });
 	}

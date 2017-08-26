@@ -4,10 +4,11 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 	$scope.project = null;
 	$scope.audio = null;
 	$scope.videoUrl = null;//'https://s3.amazonaws.com/ace.video.com/4hz9DMpyBawUFLF7EDX8/Awesome_T-Shirts_That_Scream_GirlPower.mp4';//null;
-	$scope.buttonText = "Make Mp4";
+	$scope.buttonText = "See Mp4";
+	$scope.renderButtonText = "Make Mp4";
 	
 	$scope.rendering = true;
-	$scope.shouldToggleViews = false;
+	$scope.canToggleViews = false;
 	$scope.showMp4 = true;
 
 	fetchStory();
@@ -50,31 +51,41 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 			.then(function (data) {
 				$scope.data = data;
 			}, function (data) {
-			});
+			});		
+	}
 
-
-		
+	$scope.togglePlayer = function(){
+		if($scope.canToggleViews){
+			toggle();
+		}
 	}
 
 	$scope.renderMP4 = function (){
 		// console.log($scope.selectedTrack);
 
-		if($scope.shouldToggleViews){
-			toggle();
-		}
-		else{
+		// if($scope.canToggleViews){
+		// 	toggle();
+		// }
+		// else{
 
 			if(!$scope.rendering){
 				$scope.rendering = true;
 				dataManager.renderMP4({'audioId':$scope.selectedTrack.id})
 					.then(function(res){
-						$scope.buttonText = "0%";
+						$scope.renderButtonText = "0%";
 						checkRenderStatus();
 					});
-				
 			}
-		}
+		// }
 		
+	}
+
+	$scope.isRendering = function(){
+		return $scope.rendering;
+	}
+
+	$scope.canToggle = function(){
+		return $scope.canToggleViews;
 	}
 
 	function toggle(){
@@ -91,14 +102,15 @@ APP.controller('PlayController', function($scope, $window, $location, $timeout, 
 			.then(function (data){
 				if(data.status == 1){
 					$scope.rendering = true;
-					$scope.buttonText = Math.round(data.progress * 100) + "%";
+					$scope.renderButtonText = "rendering.." + Math.round(data.progress * 100) + "%";
 					$timeout(checkRenderStatus, 15000);
 				}
 				else if(data.status == 2){
 					$scope.rendering = false;
-					$scope.shouldToggleViews = true;
+					$scope.canToggleViews = true;
 					$scope.buttonText = "See Preview";
 					$scope.videoUrl = data.videoUrl;
+					$scope.renderButtonText = "Render";
 				}else{
 					$scope.rendering = false;
 				}

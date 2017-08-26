@@ -1,25 +1,27 @@
 <play-page class='el'>
     
-    <player story="data" controls="true" ng-hide="showVideo()"></player>
+    <player story="data" controls="true" ng-hide="showVideo()" audioUrl="selectedTrack.url"></player>
 
     <video ng-show="showVideo()" controls="" ng-src="{{videoUrl | trustUrl}}"></video>
 
 
     <div class='buttons'>
-      <div class='section'>
-        <ace-button ng-click="renderMP4()" class='clickable left render'>{{buttonText}}</ace-button>
+      <div class='left'>
+        <ace-button ng-show="canToggle()" ng-click="togglePlayer()" class='clickable left render'>{{buttonText}}</ace-button>
+        <ace-button ng-click="renderMP4()" class='clickable left render'>{{renderButtonText}}</ace-button>
+        <!-- <div ng-show="isRendering()">{{renderProgressText}}</div> -->
       </div>
 
-      <div class='section'>
+      <!-- <div class='section'>
         <span>select track</span>
         <select ng-model="selectedTrack" 
           ng-options="i.name for i in audio">
             <option>select audio</option>
         </select>
 
-      </div>
+      </div> -->
 
-      <div class='section'>
+      <div class='right'>
         <img class='clickable' ng-click='download()' src='img/player/downloadButton.png'/>
         <img class='clickable' src='img/player/twitterButton.png'/>
         <img class='clickable' src='img/player/facebookButton.png'/>

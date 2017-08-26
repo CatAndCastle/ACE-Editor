@@ -11,6 +11,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 	this.loggedin = true;
 	this.project = null;
+	this.autosaveTimeout = null;
 	
 	this.login = function(){
 		this.loggedin = true;
@@ -18,6 +19,16 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 	this.logout = function(){
 
+	}
+
+	this.handleEdit = function(){
+		// this.setState(stateUpdate);
+	    if(this.autosaveTimeout) clearTimeout(this.autosaveTimeout);
+	    var self = this;
+	    this.autosaveTimeout = setTimeout(function(){
+	      self.updateStory();
+	      // self.autosaveTimeout = null;
+	    }, 1000);
 	}
 
 	this.setStoryId = function(id){
@@ -157,6 +168,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
             'type': 'text'
         });
         _isEdited = true;
+        this.handleEdit();
 	}
 
 	this.updateAsset = function(){
@@ -166,6 +178,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 	this.deleteAsset = function(idx){
 		_data.body.splice(idx,1);
         _isEdited = true;
+        this.handleEdit();
 	}
 
 	this.clientHome = function(){
@@ -202,6 +215,7 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 	        .then(function(response){ 
 	        	_title = response.data.name.toUpperCase();
 	        	this.project = response.data;
+	        	console.log(this.project);
 	        	deferred.resolve(response.data);
 	        })
 	        .catch(function(e){
@@ -211,6 +225,11 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 
 		return deferred.promise;
+	}
+
+	this.randomAudio = function(){
+		idx = Math.floor(Math.random() * (this.project.audio.length-1)) + 0;
+		return this.project.audio[idx]['id'];
 	}
 
 	this.deleteStory = function(storyId){
@@ -263,10 +282,38 @@ APP.service('dataManager', function ($http, $q, $location, $timeout){
 
 	}
 
+	this.updateStory = function(){
+		// console.log(_data);
+
+		var postdata = $.param(_data);		
+
+		var config = {
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+
+        $http.post(API_BASE+"story/update", postdata, config)
+            .success(function (data, status, headers, config) {
+            	console.log("story updated");
+            })
+            .error(function (data, status, header, config) {
+                var response_details = "Data: " + data +
+                    "<hr />status: " + status +
+                    "<hr />headers: " + header +
+                    "<hr />config: " + config;
+                $window.alert('We are experiencing errors. Please try again later.');
+            });
+	}
+
 	this.renderMP4 = function (options){
 		var deferred = $q.defer();
 
 		options.id = _data.id;
+		if(!('audioId' in options)){
+			options['audioId'] = this.randomAudio();
+		}
+
 		var postdata = $.param( options );
         var config = {
             headers : {

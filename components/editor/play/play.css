@@ -17,7 +17,7 @@ play-page .buttons .render{
 	position:relative;
 	float:left;
 	/*width: 50%;*/
-	margin:0px;
+	margin:0px 20px;
 }
 play-page .buttons select{
 	position:relative;

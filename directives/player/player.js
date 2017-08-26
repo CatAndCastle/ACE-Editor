@@ -1,7 +1,6 @@
 APP.directive('player', function(){
 	var controller = ['$scope', function ($scope, dataManager) {
 		$scope.playing = false;
-		$scope.playing = false;
 		$scope.bodymovin = null;
 		$scope.config = {
 	    			'api_url' : API_BASE,
@@ -124,6 +123,7 @@ APP.directive('player', function(){
 
 	    // play();
 	    // goTo(30);
+
 	}],
 
 	controlsHTML = '<player-controls ng-show="controls" class="el">' +
@@ -133,11 +133,16 @@ APP.directive('player', function(){
 						    '<img src="img/player/pauseButton.png" ng-show="playing" ng-click="play(false)" class="clickable"/>'+
 						'</div>' + 
 					'</player-controls>';
+
+	audioHTML = '<audio>' + 
+				'<source src="horse.mp3" type="audio/mpeg" ng-src="{{audioUrl | trustUrl}}">' +
+			'</audio>';
 	
 	template =	'<div class="resizer"></div>'+
 			    '<div class="player-container">'+
 			        '<div id="{{getId()}}" class="bodymovin" ng-click="play()"></div>'+
 			        controlsHTML +
+			        audioHTML +
 			    '</div>';
 
 	return {
@@ -146,6 +151,7 @@ APP.directive('player', function(){
 			asset: '=',
 			story: '=',
 			projectid: '@',
+			audioUrl: '@',
 			controls: '@'
 		},
 		template: template,

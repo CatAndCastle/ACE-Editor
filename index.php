@@ -28,10 +28,22 @@
 	<script type="text/javascript" src="lib/angular-route.1.5.10.min.js"></script>
 	<script type="text/javascript" src="lib/jquery-1.12.0.min.js"></script>
 
+	
+	<script type="text/javascript" src="lib/dropzone/min/dropzone.min.js"></script>
+	<script type="text/javascript" src="lib/ngdropzone/ng-dropzone.js"></script>
+	<link type='text/css' rel='stylesheet' href='lib/ngdropzone/ng-dropzone.css' >	
+
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="services/dataManager.js"></script>
 	<script type="text/javascript" src="services/appManager.js"></script>
+	<script type="text/javascript" src="services/dashboardManager.js"></script>
 	<script type="text/javascript" src="components/navigation/navigationController.js"></script>
+
+	<script type="text/javascript" src="components/dashboard/dashboardController.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/dashboard/dashboard.css' >
+	<script type="text/javascript" src="components/dashboard/audioPreview.js"></script>
+	<link type='text/css' rel='stylesheet' href='components/dashboard/audioPreview.css' >
+	<script type="text/javascript" src="components/dashboard/progressBar.js"></script>
 
 	<script type="text/javascript" src="components/editor/write/writeController.js"></script>
 	<link type='text/css' rel='stylesheet' href='components/editor/write/write.css' >

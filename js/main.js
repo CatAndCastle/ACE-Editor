@@ -1,5 +1,5 @@
 // var prefix = '/ACE/dashboard/';
-var APP = angular.module('video-dashboard', ['ngRoute', 'angularModalService']);
+var APP = angular.module('video-dashboard', ['ngRoute', 'angularModalService', 'thatisuday.dropzone']);
 
 APP.config(function($routeProvider, $locationProvider) {
     $routeProvider.
@@ -14,6 +14,10 @@ APP.config(function($routeProvider, $locationProvider) {
         when('/project', {
             templateUrl: 'components/videos/videos.html',
             controller: 'VideosController'
+        }).
+        when('/admin', {
+            templateUrl: 'components/dashboard/dashboard.html',
+            controller: 'DashboardController'
         }).
         when('/write', {
             templateUrl: 'components/editor/write/write.html',
