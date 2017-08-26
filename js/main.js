@@ -1,5 +1,5 @@
 // var prefix = '/ACE/dashboard/';
-var APP = angular.module('video-dashboard', ['ngRoute', 'angularModalService', 'thatisuday.dropzone']);
+var APP = angular.module('video-dashboard', ['ngRoute', 'angularModalService']);
 
 APP.config(function($routeProvider, $locationProvider) {
     $routeProvider.
